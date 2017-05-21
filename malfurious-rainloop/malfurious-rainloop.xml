@@ -8,7 +8,7 @@
   <Description>
 	Rainloop is a versatile webmail application.
 	[b]To enable the ability to save Contacts, you will need to set it up manually in the webgui.[/b]
-	[b]Please leave "--name postfixadmin" in the Extra Parameters box.[/b]
+	[b]If not using nginx as a Reverse Proxy, then modify the port under Advanced as required.[/b]
   </Description>
   <Overview>
   </Overview>
@@ -17,23 +17,18 @@
   <Repository>malfurious/rainloop</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
+  <Config Name="Web Port" Target="8888" Default="" Description="Port for the Webgui" Type="Port" Display="advanced-hide" Required="false" Mask="false"></Config>
   <Networking>
     <Mode>bridge</Mode>
-      <Publish>
-      <Port>
-        <HostPort></HostPort>
-        <ContainerPort>8888</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-   </Publish>
+      <Publish></Publish>
   </Networking>
   <Data>
-  	<HostDir>/rainloop/data</HostDir>
-      <ContainerDir>/mnt/docker/rainloop</ContainerDir>
+  	<HostDir>/mnt/docker/rainloop</HostDir>
+      <ContainerDir>/rainloop/data</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
-<WebUI></WebUI>
+<WebUI>http://[IP]:[PORT:8888]</WebUI>
   <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/RainloopIcon.png</Icon>
   <ExtraParams></ExtraParams> 
 <DonateText></DonateText>
