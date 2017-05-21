@@ -3,27 +3,20 @@
   <Beta>True</Beta>
   <Category>Other:Tools</Category>
   <Date></Date>
-  <Name>Malfurious-Postfixadmin</Name>
+  <Name>Malfurious-Rainloop</Name>
   <Support></Support>
   <Description>
-	Postfixadmin is a tool for managing email account on an smtp server.
-	[b]This docker requires a mysql database to connect to, preferably MariaDB.[/b]
-	[b]For DBHOST/DBUSER/DBNAME/DBPASS fill in the settings for your mysql database.[/b]
-	[b]For DOMAIN, enter the domain you wish to use. Example: If using an online domain such as domain.com, then you would enter "domain.com".[/b]
+	Rainloop is a versatile webmail application.
+	[b]To enable the ability to save Contacts, you will need to set it up manually in the webgui.[/b]
 	[b]Please leave "--name postfixadmin" in the Extra Parameters box.[/b]
   </Description>
   <Overview>
   </Overview>
-  <Project>http://postfixadmin.sourceforge.net/</Project>
-  <Registry>https://registry.hub.docker.com/u/malfurious/postfixadmin/</Registry>
-  <Repository>malfurious/postfixadmin</Repository>
+  <Project>https://www.rainloop.net/</Project>
+  <Registry>https://registry.hub.docker.com/u/malfurious/rainloop/</Registry>
+  <Repository>malfurious/rainloop</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
-  <Config Name="Database IP/Host" Target="DBHOSE" Default="mariadb" Description="Database IP/Host" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Database Username" Target="DBUSER" Default="postfix" Description="Database Username" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Database Name" Target="DBNAME" Default="postfix" Description="Database Name" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Database Password" Target="DBPASS" Default="" Description="Database Password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Domain Name" Target="DOMAIN" Default="domain.com" Description="Domain Name" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Networking>
     <Mode>bridge</Mode>
       <Publish>
@@ -34,10 +27,15 @@
       </Port>
    </Publish>
   </Networking>
-  <Data></Data>
+  <Data>
+  	<HostDir>/rainloop/data</HostDir>
+      <ContainerDir>/mnt/docker/rainloop</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
 <WebUI></WebUI>
-  <Icon>https://a.fsdn.com/allura/p/postfixadmin/icon?1486933923</Icon>
-  <ExtraParams>--name postfixadmin</ExtraParams> 
+  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/RainloopIcon.png</Icon>
+  <ExtraParams>--name malfurious-rainloop</ExtraParams> 
 <DonateText></DonateText>
 <DonateLink></DonateLink>
 <DonateImg></DonateImg>
