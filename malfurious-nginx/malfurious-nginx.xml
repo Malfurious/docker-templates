@@ -3,19 +3,20 @@
   <Beta>True</Beta>
   <Category>Other:Tools</Category>
   <Date></Date>
-  <Name>malfurious-postfixadmin</Name>
+  <Name>malfurious-nginx</Name>
   <Support></Support>
   <Description>
 	Postfixadmin is a tool for managing email account on an smtp server.
 	[b]This docker requires a mysql database to connect to, preferably MariaDB.[/b]
 	[b]For DBHOST/DBUSER/DBNAME/DBPASS fill in the settings for your mysql database.[/b]
 	[b]For DOMAIN, enter the domain you wish to use. Example: If using an online domain such as domain.com, then you would enter "domain.com".[/b]
+	[b]Please leave "--name postfixadmin" in the Extra Parameters box.[/b]
   </Description>
   <Overview>
   </Overview>
-  <Project>http://postfixadmin.sourceforge.net/</Project>
-  <Registry>https://registry.hub.docker.com/u/malfurious/postfixadmin/</Registry>
-  <Repository>malfurious/postfixadmin</Repository>
+  <Project>https://www.nginx.com/</Project>
+  <Registry>https://registry.hub.docker.com/u/malfurious/nginx/</Registry>
+  <Repository>malfurious/nginx</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Config Name="Database IP/Host" Target="DBHOSE" Default="mariadb" Description="Database IP/Host" Type="Variable" Display="always" Required="true" Mask="false"></Config>
@@ -27,16 +28,42 @@
     <Mode>bridge</Mode>
       <Publish>
       <Port>
-        <HostPort></HostPort>
-        <ContainerPort>8888</ContainerPort>
+        <HostPort>8000</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>4430</HostPort>
+        <ContainerPort>443</ContainerPort>
         <Protocol>tcp</Protocol>
       </Port>
    </Publish>
   </Networking>
-  <Data></Data>
+  <Data>
+   <Volume>
+	<HostDir>/mnt/docker/nginx/sites-enabled</HostDir>
+      <ContainerDir>/sites-enabled</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+	<HostDir>/mnt/docker/nginx/conf</HostDir>
+      <ContainerDir>/conf.d</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+	<HostDir>/mnt/docker/nginx/log</HostDir>
+      <ContainerDir>/var/log/nginx</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+	<HostDir>/mnt/docker/nginx/certs</HostDir>
+      <ContainerDir>/certs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
 <WebUI></WebUI>
-  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/PostfixadminIcon.png</Icon>
-  <ExtraParams></ExtraParams> 
+  <Icon>https://a.fsdn.com/allura/p/postfixadmin/icon?1486933923</Icon>
+  <ExtraParams>--name postfixadmin</ExtraParams> 
 <DonateText></DonateText>
 <DonateLink></DonateLink>
 <DonateImg></DonateImg>

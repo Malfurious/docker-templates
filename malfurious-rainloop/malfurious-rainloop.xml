@@ -3,7 +3,7 @@
   <Beta>True</Beta>
   <Category>Other:Tools</Category>
   <Date></Date>
-  <Name>Malfurious-Rainloop</Name>
+  <Name>malfurious-rainloop</Name>
   <Support></Support>
   <Description>
 	Rainloop is a versatile webmail application.
@@ -35,7 +35,7 @@
   </Data>
 <WebUI></WebUI>
   <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/RainloopIcon.png</Icon>
-  <ExtraParams>--name malfurious-rainloop</ExtraParams> 
+  <ExtraParams></ExtraParams> 
 <DonateText></DonateText>
 <DonateLink></DonateLink>
 <DonateImg></DonateImg>
