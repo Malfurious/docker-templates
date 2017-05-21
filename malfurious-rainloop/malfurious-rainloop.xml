@@ -23,7 +23,8 @@
       <Publish></Publish>
   </Networking>
   <Data>
-  	<HostDir>/mnt/docker/rainloop</HostDir>
+    <Volume>
+	  <HostDir>/mnt/docker/rainloop</HostDir>
       <ContainerDir>/rainloop/data</ContainerDir>
       <Mode>rw</Mode>
     </Volume>

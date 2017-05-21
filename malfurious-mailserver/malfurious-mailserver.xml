@@ -3,35 +3,72 @@
   <Beta>True</Beta>
   <Category>Other:Tools</Category>
   <Date></Date>
-  <Name>malfurious-postfixadmin</Name>
+  <Name>malfurious-mailserver</Name>
   <Support></Support>
   <Description>
-	Postfixadmin is a tool for managing email account on an smtp server.
+	Mailserver is an all-in-one SMTP/IMAP utility that also includes many features such as Anti-Spam/Virus filters.
 	[b]This docker requires a mysql database to connect to, preferably MariaDB.[/b]
-	[b]For DBHOST/DBUSER/DBNAME/DBPASS fill in the settings for your mysql database.[/b]
-	[b]For DOMAIN, enter the domain you wish to use. Example: If using an online domain such as domain.com, then you would enter "domain.com". By default it will be the domain name of the container.[/b]
-	[b]If not using nginx as a Reverse Proxy, then modify the port under Advanced as required.[/b]
+	[b]For DBPASS fill in the password you used when you setup your for your mysql database.
+	Also, under Extra Parameters, you need to put in "--add-host mariadb:xxx.xxx.xxx.xxx", where the xxx are the IP address.[/b]
+	[b]In addition to the above, if you will be using an online domain, you must add "-h mail.domain.com" to Extra Parameters.[/b]
   </Description>
   <Overview>
   </Overview>
-  <Project>http://postfixadmin.sourceforge.net/</Project>
-  <Registry>https://registry.hub.docker.com/u/malfurious/postfixadmin/</Registry>
-  <Repository>malfurious/postfixadmin</Repository>
+  <Project></Project>
+  <Registry>https://registry.hub.docker.com/u/malfurious/mailserver/</Registry>
+  <Repository>malfurious/mailserver</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
-  <Config Name="Database IP/Host" Target="DBHOST" Default="mariadb" Description="Database IP/Host" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Database Username" Target="DBUSER" Default="postfix" Description="Database Username" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Database Name" Target="DBNAME" Default="postfix" Description="Database Name" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Database Password" Target="DBPASS" Default="" Description="Database Password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Domain Name" Target="DOMAIN" Default="domain.com" Description="Domain Name" Type="Variable" Display="always" Required="false" Mask="false"></Config>
-  <Config Name="Web Port" Target="8888" Default="" Description="Port for the Webgui" Type="Port" Display="advanced-hide" Required="false" Mask="false"></Config>
   <Networking>
     <Mode>bridge</Mode>
-      <Publish></Publish>
+      <Publish>
+	  <Port>
+        <HostPort>25</HostPort>
+        <ContainerPort>25</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>143</HostPort>
+        <ContainerPort>143</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>587</HostPort>
+        <ContainerPort>587</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>993</HostPort>
+        <ContainerPort>993</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>4190</HostPort>
+        <ContainerPort>4190</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  </Publish>
   </Networking>
-  <Data></Data>
-<WebUI>http://[IP]:[PORT:8888]</WebUI>
-  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/PostfixadminIcon.png</Icon>
+  <Data>
+    <Volume>
+	  <HostDir>/mnt/docker/mail</HostDir>
+      <ContainerDir>/var/mail</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+	  <HostDir>/mnt/docker/mail/opendkim</HostDir>
+      <ContainerDir>/etc/opendkim/keys</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+	  <HostDir>/mnt/docker/nginx/certs</HostDir>
+      <ContainerDir>/etc/letsencrypt</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+<WebUI></WebUI>
+  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/MailserverIcon.png</Icon>
   <ExtraParams></ExtraParams> 
 <DonateText></DonateText>
 <DonateLink></DonateLink>
