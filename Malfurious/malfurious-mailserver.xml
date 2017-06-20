@@ -19,7 +19,9 @@
   <Repository>malfurious/mailserver</Repository>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
+  <Config Name="Database Password" Target="DBUSER" Default="postfix" Description="Database Username" Type="Variable" Display="always" Required="false" Mask="false"></Config>
   <Config Name="Database Password" Target="DBPASS" Default="" Description="Database Password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Database Password" Target="DBNAME" Default="postfix" Description="Database Name" Type="Variable" Display="always" Required="false" Mask="false"></Config>
   <Networking>
     <Mode>bridge</Mode>
       <Publish>
