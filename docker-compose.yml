@@ -5,9 +5,6 @@ services:
     container_name: mailserver
     domainname: othala.us                
     hostname: mail
-      restart: always
-      extra_hosts:                        - Required for external database (on other server or for local database on host)
-       - "mariadb:192.168.1.2"            - Replace with IP address of MariaDB server
     ports:
       - "25:25"     # SMTP                - Required
       - "143:143"   # IMAP       STARTTLS - Optional - For webmails/desktop clients
@@ -28,7 +25,6 @@ services:
     container_name: postfixadmin
     domainname: othala.us
     hostname: mail
-      restart: always
     environment:
       - DBPASS=postfix
     depends_on:
@@ -38,7 +34,6 @@ services:
   rainloop:
     image: hardware/rainloop
     container_name: rainloop
-      restart: always
     volumes:
       - /mnt/docker/rainloop:/rainloop/data
     depends_on:
@@ -48,7 +43,6 @@ services:
   nginx:
     image: wonderfall/boring-nginx
     container_name: nginx
-      restart: always
     ports:
       - "80:8000"
       - "443:4430"
@@ -61,3 +55,15 @@ services:
       - postfixadmin
       - rainloop
 
+  mariadb:
+    image: mariadb:10.1
+    container_name: mariadb
+    # restart: always
+    # Info : These variables are ignored when the volume already exists (databases created before).
+    environment:
+      - MYSQL_ROOT_PASSWORD=xXtYcbJ57ise9vp7jT0j
+      - MYSQL_DATABASE=postfix
+      - MYSQL_USER=postfix
+      - MYSQL_PASSWORD=postfix
+    volumes:
+      - /mnt/docker/mysql/db:/var/lib/mysql
