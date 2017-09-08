@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+<Beta>False</Beta>
+<Category>Network:Web</Category>
+  <Name>malfurious-redis</Name>
+  <Description>
+	This docker is designed to be used with malfurious-mailserver, malfurious-postfixadmin, and malfurious-roundcube.
+	[b]This docker requires no configuration. Just mount the volume for persistence.[/b]
+  </Description>
+  <Overview>
+   Redis is a cache server.
+  </Overview>
+  <Support></Support>
+  <Registry>https://registry.hub.docker.com/u/malfurious/redis/</Registry>
+  <GitHub></GitHub>
+  <Repository>malfurious/redis:alpine</Repository>
+  <Project>https://redis.io/</Project>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+      <Publish>
+	  <Port>
+        <HostPort>6379</HostPort>
+        <ContainerPort>6379</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/data</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <WebUI></WebUI>
+  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/redis-icon.png</Icon>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <DonateImg></DonateImg>
+  <ExtraParams>--name=redis</ExtraParams>
+</Containers>
