@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Container>
-  <Beta>True</Beta>
-  <Category>Other:Tools</Category>
-  <Date></Date>
+<Containers>
+<Beta>False</Beta>
+<Category>Network:Web</Category>
   <Name>malfurious-mailserver</Name>
-  <Support></Support>
   <Description>
-	Mailserver is an all-in-one SMTP/IMAP utility that also includes many features such as Anti-Spam/Virus filters.
-	[b]This docker requires a mysql database to connect to, preferably MariaDB.[/b]
-	[b]For DBPASS fill in the password you used when you setup your for your mysql database.
-	Also, under Extra Parameters, you need to put in "--add-host mariadb:xxx.xxx.xxx.xxx", where the xxx are the IP address.[/b]
-	[b]In addition to the above, if you will be using an online domain, you must add "-h mail.domain.com" to Extra Parameters.[/b]
+	This docker is designed to be used with malfurious-postfixadmin, malfurious-redis, and malfurious-roundcube.
+	[b]This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "postfix" with a user named "postfix". Set your own password for the user.[/b]
+	[b]For DBPASS fill in the password you used when you setup your mysql database for user postfix.[/b] 
+	[b]Also, under Extra Parameters, you need to replace the "xxx.xxx.xxx.xxx" in "--add-host mariadb:xxx.xxx.xxx.xxx", where the xxx are the IP address of your mysql server.[/b]
+	[b]Also under Extra Parameters, replace "mail.domain.td" in "-h mail.domain.td" with the hostname for your mailserver.[/b]
+	[b]To use SSL, such as with LetsEncrypt, add a path variable pointing to /etc/letsencrypt on this docker. Your certificates should use the following format from within that directory:
+		Inside /etc/letsencrypt: /live/mail.domain.td/fullchain.pem = certificate, /live/mail.domain.td/privkey.pem = certificate key. [/b]
+	[b]Port 11334 is for the RSPAMD webgui.[/b]
+	[b]Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template. Any other configuration settings you may be interested will be listed at: https://github.com/hardware/mailserver [/b]
   </Description>
   <Overview>
+   Mailserver is an all-in-one SMTP/IMAP utility that also includes many features such as Anti-Spam/Virus filters.
   </Overview>
-  <Project></Project>
-  <Registry>https://registry.hub.docker.com/u/malfurious/mailserver/</Registry>
-  <Repository>malfurious/mailserver</Repository>
+  <Support></Support>
+  <Registry>https://registry.hub.docker.com/u/hardware/mailserver/</Registry>
+  <GitHub>https://github.com/hardware/mailserver</GitHub>
+  <Repository>hardware/mailserver:1.1-stable</Repository>
+  <Project>https://github.com/hardware/mailserver</Project>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
-  <Config Name="Database Password" Target="DBUSER" Default="postfix" Description="Database Username" Type="Variable" Display="always" Required="false" Mask="false"></Config>
-  <Config Name="Database Password" Target="DBPASS" Default="" Description="Database Password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="Database Password" Target="DBNAME" Default="postfix" Description="Database Name" Type="Variable" Display="always" Required="false" Mask="false"></Config>
   <Networking>
     <Mode>bridge</Mode>
       <Publish>
@@ -50,29 +52,42 @@
         <ContainerPort>4190</ContainerPort>
         <Protocol>tcp</Protocol>
       </Port>
+	  <Port>
+        <HostPort>11334</HostPort>
+        <ContainerPort>11334</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
 	  </Publish>
   </Networking>
+  <Environment>
+	<Variable>
+      <Name>DBPASS</Name>
+      <Value></Value>
+    </Variable>
+	<Variable>
+      <Name>REDIS_HOST</Name>
+      <Value>redis</Value>
+    </Variable>
+	<Variable>
+      <Name>REDIS_PORT</Name>
+      <Value>6379</Value>
+    </Variable>
+    <Variable>
+      <Name>RSPAMD_PASSWORD</Name>
+      <Value></Value>
+    </Variable>
+  </Environment>
   <Data>
     <Volume>
-	  <HostDir>/mnt/docker/mail</HostDir>
+      <HostDir></HostDir>
       <ContainerDir>/var/mail</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
-	<Volume>
-	  <HostDir>/mnt/docker/mail/opendkim</HostDir>
-      <ContainerDir>/etc/opendkim/keys</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-	<Volume>
-	  <HostDir>/mnt/docker/nginx/certs</HostDir>
-      <ContainerDir>/etc/letsencrypt</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
   </Data>
-<WebUI></WebUI>
+  <WebUI>http://[IP]:[PORT:11334]</WebUI>
   <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/MailserverIcon.png</Icon>
-  <ExtraParams></ExtraParams> 
-<DonateText></DonateText>
-<DonateLink></DonateLink>
-<DonateImg></DonateImg>
-</Container>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <DonateImg></DonateImg>
+  <ExtraParams>--name=mailserver -h mail.domain.td --add-host mariadb:xxx.xxx.xxx.xxx</ExtraParams>
+</Containers>
