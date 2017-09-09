@@ -5,7 +5,7 @@
   <Name>malfurious-redis</Name>
   <Description>
 	This docker is designed to be used with malfurious-mailserver, malfurious-postfixadmin, and malfurious-roundcube.
-	[b]This docker requires no configuration. Just mount the volume for persistence.[/b]
+	This docker requires no configuration. Just mount the volume for persistence.
   </Description>
   <Overview>
    Redis is a cache server.

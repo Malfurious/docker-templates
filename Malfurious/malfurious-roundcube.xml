@@ -5,12 +5,12 @@
   <Name>malfurious-roundcube</Name>
   <Description>
 	This docker is designed to be used with malfurious-mailserver, malfurious-redis, and malfurious-roundcube.
-	[b]This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "roundcube" with a user named "roundcube". Set your own password for the user.[/b]
-	[b]For MYSQL_PASS fill in the password you used when you setup your mysql database for user roundcube. Fill MYSQL_HOST with the ip or hostname for your MariaDB/MySQL server.[/b] 
-	[b]Port 8888 is for the webmail webgui.[/b]
-	[b]On first launch, goto the webgui "http://[IP]:[PORT]/installer" to do initial setup. Afterwards, restart the docker with "DISABLE_INSTALLER" set to "true".[/b]
-	[b]For PFA_* use the same username/password/database used for your mailserver. If PFA_USER is not set, the password plugin won't be configured.[/b]
-	[b]Edit config.inc.php in /roundcube/config for further modifications. And to configure plugins, modify the config.inc.php in that plugins folder in /roundcube/plugins. If you use OpenPGP encryption, keys are stored in /enigma.[/b]
+	This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "roundcube" with a user named "roundcube". Set your own password for the user.
+	For MYSQL_PASS fill in the password you used when you setup your mysql database for user roundcube. Fill MYSQL_HOST with the ip or hostname for your MariaDB/MySQL server.
+	Port 8888 is for the webmail webgui.
+	On first launch, goto the webgui "http://[IP]:[PORT]/installer" to do initial setup. Afterwards, restart the docker with "DISABLE_INSTALLER" set to "true".
+	For PFA_* use the same username/password/database used for your mailserver. If PFA_USER is not set, the password plugin won't be configured.
+	Edit config.inc.php in /roundcube/config for further modifications. And to configure plugins, modify the config.inc.php in that plugins folder in /roundcube/plugins. If you use OpenPGP encryption, keys are stored in /enigma.
   </Description>
   <Overview>
    Roundcube is a webmail gui/client.

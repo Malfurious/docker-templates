@@ -5,7 +5,7 @@
   <Name>malfurious-nginx</Name>
   <Description>
 	This docker is designed to be used with malfurious-mailserver, malfurious-postfixadmin, malfurious-roundcube, and malfurious-redis.
-	[b]To setup Reverse Proxies. SSH into your server and run "docker exec -it malfurious-letsencrypt ngxproxy" and follow prompts.[/b]
+	To setup Reverse Proxies. SSH into your server and run "docker exec -it malfurious-letsencrypt ngxproxy" and follow prompts.
 	Name: will be the name of the service you want to reverse proxy to.
 	Domain: will be the subdomain you want to forward to this service. Example: webmail.domain.td for webmail.
 	Webroot: Hit enter, leave as default.

@@ -5,13 +5,13 @@
   <Name>malfurious-mailserver</Name>
   <Description>
 	This docker is designed to be used with malfurious-postfixadmin, malfurious-redis, and malfurious-roundcube.
-	[b]This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "postfix" with a user named "postfix". Set your own password for the user.[/b]
-	[b]Enter your MariaDB/MySQL IP address or hostname for DBHOST. For DBPASS fill in the password you used when you setup your mysql database for user postfix.[/b] 
-	[b]Also under Extra Parameters, replace "mail.domain.td" in "-h mail.domain.td" with the hostname for your mailserver.[/b]
-	[b]To use SSL, such as with LetsEncrypt, add a path variable pointing to /etc/letsencrypt on this docker. Your certificates should use the following format from within that directory:
-		Inside /etc/letsencrypt: /live/mail.domain.td/fullchain.pem = certificate, /live/mail.domain.td/privkey.pem = certificate key. [/b]
-	[b]Port 11334 is for the RSPAMD webgui.[/b]
-	[b]Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template. Any other configuration settings you may be interested will be listed at: https://github.com/hardware/mailserver [/b]
+	This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "postfix" with a user named "postfix". Set your own password for the user.
+	Enter your MariaDB/MySQL IP address or hostname for DBHOST. For DBPASS fill in the password you used when you setup your mysql database for user postfix.
+	Also under Extra Parameters, replace "mail.domain.td" in "-h mail.domain.td" with the hostname for your mailserver.
+	To use SSL, such as with LetsEncrypt, add a path variable pointing to /etc/letsencrypt on this docker. Your certificates should use the following format from within that directory:
+		Inside /etc/letsencrypt: /live/mail.domain.td/fullchain.pem = certificate, /live/mail.domain.td/privkey.pem = certificate key. 
+	Port 11334 is for the RSPAMD webgui.
+	Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template. Any other configuration settings you may be interested will be listed at: https://github.com/hardware/mailserver 
   </Description>
   <Overview>
    Mailserver is an all-in-one SMTP/IMAP utility that also includes many features such as Anti-Spam/Virus filters.
