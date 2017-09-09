@@ -6,8 +6,7 @@
   <Description>
 	This docker is designed to be used with malfurious-mailserver, malfurious-redis, and malfurious-roundcube.
 	[b]This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "roundcube" with a user named "roundcube". Set your own password for the user.[/b]
-	[b]For DBPASS fill in the password you used when you setup your mysql database for user roundcube.[/b] 
-	[b]Also, under Extra Parameters, you need to replace the "xxx.xxx.xxx.xxx" in "--add-host mariadb:xxx.xxx.xxx.xxx", where the xxx are the IP address of your mysql server.[/b]
+	[b]For MYSQL_PASS fill in the password you used when you setup your mysql database for user roundcube. Fill MYSQL_HOST with the ip or hostname for your MariaDB/MySQL server.[/b] 
 	[b]Port 8888 is for the webmail webgui.[/b]
 	[b]On first launch, goto the webgui "http://[IP]:[PORT]/installer" to do initial setup. Afterwards, restart the docker with "DISABLE_INSTALLER" set to "true".[/b]
 	[b]For PFA_* use the same username/password/database used for your mailserver. If PFA_USER is not set, the password plugin won't be configured.[/b]
@@ -95,5 +94,5 @@
   <DonateText></DonateText>
   <DonateLink></DonateLink>
   <DonateImg></DonateImg>
-  <ExtraParams>--name=roundcube</ExtraParams>
+  <ExtraParams></ExtraParams>
 </Containers>
