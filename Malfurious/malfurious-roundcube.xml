@@ -89,21 +89,11 @@
       <ContainerDir>/enigma</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
-    <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/roundcube/config</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/roundcube/plugins</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
   </Data>
   <WebUI>http://[IP]:[PORT:8888]</WebUI>
   <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/roundcube.png</Icon>
   <DonateText></DonateText>
   <DonateLink></DonateLink>
   <DonateImg></DonateImg>
-  <ExtraParams>--name=roundcube --add-host mariadb:xxx.xxx.xxx.xxx</ExtraParams>
+  <ExtraParams>--name=roundcube</ExtraParams>
 </Containers>
