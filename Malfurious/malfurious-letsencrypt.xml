@@ -13,10 +13,10 @@
    Malfurious-LetsEncrypt is an SSL Certificate generator using LetsEncrypt.
   </Overview>
   <Support></Support>
-  <Registry>https://registry.hub.docker.com/u/wonderfall/boring-nginx/</Registry>
-  <GitHub>https://github.com/Wonderfall/dockerfiles/tree/master/boring-nginx</GitHub>
-  <Repository>wonderfall/boring-nginx</Repository>
-  <Project>https://www.nginx.com/resources/wiki/</Project>
+  <Registry>https://registry.hub.docker.com/u/xataz/letsencrypt/</Registry>
+  <GitHub></GitHub>
+  <Repository>xataz/letsencrypt</Repository>
+  <Project></Project>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Networking>
