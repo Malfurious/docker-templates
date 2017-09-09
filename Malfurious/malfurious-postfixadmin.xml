@@ -6,8 +6,7 @@
   <Description>
 	This docker is designed to be used with malfurious-mailserver, malfurious-redis, and malfurious-roundcube.
 	[b]This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "postfix" with a user named "postfix". Set your own password for the user.[/b]
-	[b]For DBPASS fill in the password you used when you setup your mysql database for user postfix.[/b] 
-	[b]Also, under Extra Parameters, you need to replace the "xxx.xxx.xxx.xxx" in "--add-host mariadb:xxx.xxx.xxx.xxx", where the xxx are the IP address of your mysql server.[/b]
+	[b]Enter your MariaDB/MySQL IP address or hostname for DBHOST. For DBPASS fill in the password you used when you setup your mysql database for user postfix.[/b] 
 	[b]Also under Extra Parameters, replace "mail.domain.td" in "-h mail.domain.td" with the hostname for your mailserver.[/b]
 	[b]Port 8888 is for the postfix webgui.[/b]
 	[b]Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template. Any other configuration settings you may be interested will be listed at: https://github.com/hardware/postfixadmin [/b]
@@ -33,6 +32,10 @@
 	  </Publish>
   </Networking>
   <Environment>
+    <Variable>
+      <Name>DBHOST</Name>
+      <Value></Value>
+    </Variable>
 	<Variable>
       <Name>DBPASS</Name>
       <Value></Value>
@@ -43,5 +46,5 @@
   <DonateText></DonateText>
   <DonateLink></DonateLink>
   <DonateImg></DonateImg>
-  <ExtraParams>--name=postfixadmin -h mail.domain.td --add-host mariadb:xxx.xxx.xxx.xxx</ExtraParams>
+  <ExtraParams>-h mail.domain.td</ExtraParams>
 </Containers>

@@ -6,8 +6,7 @@
   <Description>
 	This docker is designed to be used with malfurious-postfixadmin, malfurious-redis, and malfurious-roundcube.
 	[b]This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "postfix" with a user named "postfix". Set your own password for the user.[/b]
-	[b]For DBPASS fill in the password you used when you setup your mysql database for user postfix.[/b] 
-	[b]Also, under Extra Parameters, you need to replace the "xxx.xxx.xxx.xxx" in "--add-host mariadb:xxx.xxx.xxx.xxx", where the xxx are the IP address of your mysql server.[/b]
+	[b]Enter your MariaDB/MySQL IP address or hostname for DBHOST. For DBPASS fill in the password you used when you setup your mysql database for user postfix.[/b] 
 	[b]Also under Extra Parameters, replace "mail.domain.td" in "-h mail.domain.td" with the hostname for your mailserver.[/b]
 	[b]To use SSL, such as with LetsEncrypt, add a path variable pointing to /etc/letsencrypt on this docker. Your certificates should use the following format from within that directory:
 		Inside /etc/letsencrypt: /live/mail.domain.td/fullchain.pem = certificate, /live/mail.domain.td/privkey.pem = certificate key. [/b]
@@ -60,6 +59,10 @@
 	  </Publish>
   </Networking>
   <Environment>
+    <Variable>
+      <Name>DBHOST</Name>
+      <Value></Value>
+    </Variable>
 	<Variable>
       <Name>DBPASS</Name>
       <Value></Value>
@@ -67,10 +70,6 @@
 	<Variable>
       <Name>REDIS_HOST</Name>
       <Value>redis</Value>
-    </Variable>
-	<Variable>
-      <Name>REDIS_PORT</Name>
-      <Value>6379</Value>
     </Variable>
     <Variable>
       <Name>RSPAMD_PASSWORD</Name>
@@ -89,5 +88,5 @@
   <DonateText></DonateText>
   <DonateLink></DonateLink>
   <DonateImg></DonateImg>
-  <ExtraParams>--name=mailserver -h mail.domain.td --add-host mariadb:xxx.xxx.xxx.xxx</ExtraParams>
+  <ExtraParams>-h mail.domain.td</ExtraParams>
 </Containers>

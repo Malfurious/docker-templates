@@ -39,5 +39,5 @@
   <DonateText></DonateText>
   <DonateLink></DonateLink>
   <DonateImg></DonateImg>
-  <ExtraParams>--name=redis</ExtraParams>
+  <ExtraParams></ExtraParams>
 </Containers>
