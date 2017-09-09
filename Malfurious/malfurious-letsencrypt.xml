@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+<Beta>False</Beta>
+<Category>Network:Web</Category>
+  <Name>malfurious-letsencrypt</Name>
+  <Description>
+	This docker is designed to be used with malfurious-mailserver, malfurious-postfixadmin, malfurious-roundcube, and malfurious-redis.
+	[b]Under ExtraParams, [/b].
+  </Description>
+  <Overview>
+   Malfurious-Nginx is a reverse Proxy server.
+  </Overview>
+  <Support></Support>
+  <Registry>https://registry.hub.docker.com/u/wonderfall/boring-nginx/</Registry>
+  <GitHub></GitHub>
+  <Repository>wonderfall/boring-nginx</Repository>
+  <Project>https://www.nginx.com/resources/wiki/</Project>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+      <Publish>
+	  <Port>
+        <HostPort>8000</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>4430</HostPort>
+        <ContainerPort>443</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/sites-enabled</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/conf.d</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/var/log/nginx</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/certs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <WebUI></WebUI>
+  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/LetsEncrypt-Icon.png</Icon>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <DonateImg></DonateImg>
+  <ExtraParams></ExtraParams>
+  <PostArgs>test</PostArgs>
+</Containers>
