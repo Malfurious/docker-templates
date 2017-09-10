@@ -5,15 +5,7 @@
   <Name>malfurious-roundcube-postfixadmin</Name>
   <Description>
 	This docker is designed to be used with malfurious-mailserver, and malfurious-redis. It contains the Roundcube Webmail client, and the Postfixadmin administration client.
-	This docker requires a mysql database to connect to, preferably MariaDB. Create 2 databases, 1 named "postfix" with a user named "postfix", and another database named "roundcube" with a user named "roundcube". Set different passwords for each. Be sure to grant all database privileges for their respective users.
-	Enter your MariaDB/MySQL IP address or hostname for MYSQL_HOST, and the respective usernames, passwords, and database names for ROUND_*/POST_*.
-	For MAIL_HOST, enter your Mailserver domain name, such as mail.domain.com.
-	Setting ENABLE_IMAPS to false will set Roundcube to use port 143 without SSL/TLS for IMAP connections. It is set to "true" by default, using port 993, and SSL/TLS.
-	Setting ENABLE_SMTPS to false will set Roundcube to use port 25 without STARTTLS for SMTP connections. It is set to "true" by default, using port 587 and STARTTLS.
-	By Default, DISABLE_INSTALLER is set to false. Once you successfully start the docker for the first time, You must open the Roundcube WebGUI at the port you set, pointing to /installer to complete the setup.
-	Once you have reached the end of the setup, you must shutdown the container, and switch DISABLE_INSTALLER to true, otherwise it will remain accessible to others.
-	Listening Port 8888 inside the container is for the Roundcube Webgui, and 8080 for the Postfixadmin Webgui. These can be customized under the Advance settings if desired. 
-	Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template.
+	For configuration information, goto: https://github.com/Malfurious/mailserver
   </Description>
   <Overview>
    Postfixadmin is an administrative interface for malfurious-mailserver.
