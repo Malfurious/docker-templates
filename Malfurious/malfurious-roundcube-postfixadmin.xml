@@ -13,7 +13,7 @@
 	By Default, DISABLE_INSTALLER is set to false. Once you successfully start the docker for the first time, You must open the Roundcube WebGUI at the port you set, pointing to /installer to complete the setup.
 	Once you have reached the end of the setup, you must shutdown the container, and switch DISABLE_INSTALLER to true, otherwise it will remain accessible to others.
 	Listening Port 8888 inside the container is for the Roundcube Webgui, and 8080 for the Postfixadmin Webgui. These can be customized under the Advance settings if desired. 
-	Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template. Any other configuration settings you may be interested will be listed at: https://github.com/hardware/postfixadmin 
+	Finally, all credit for this docker goes to Hardware, I am merely formatting it for use in UnRaid as a template.
   </Description>
   <Overview>
    Postfixadmin is an administrative interface for malfurious-mailserver.
