@@ -21,7 +21,7 @@
   <Registry>https://registry.hub.docker.com/u/malfurious/mailserver/</Registry>
   <GitHub>https://github.com/malfurious/mailserver</GitHub>
   <Repository>malfurious/mailserver</Repository>
-  <Project>https://github.com/malfurious/mailserver</Project>
+  <Project>https://github.com/Malfurious/mailserver</Project>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
   <Networking>
