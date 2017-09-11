@@ -4,20 +4,33 @@
 <Category>Network:Web</Category>
   <Name>malfurious-roundcube-postfixadmin</Name>
   <Description>
-	This docker is designed to be used with malfurious-mailserver, and malfurious-redis. It contains the Roundcube Webmail client, and the Postfixadmin administration client.
-	For configuration information, goto: https://github.com/Malfurious/mailserver
+	This docker is designed to be used with malfurious-mailserver. It contains the Roundcube Webmail client, and the Postfixadmin administration client.
+	This docker requires a mysql database to connect to, preferably MariaDB. Create 2 databases, 1 named "postfix" with a user named "postfix", and another database named "roundcube" with a user named "roundcube". Set different passwords for each. Be sure to grant all database privileges for their respective users.
+	Enter your MariaDB/MySQL IP address or hostname for MYSQL_HOST, and the respective usernames, passwords, and database names for ROUND_*/POST_*.
+	For MAIL_HOST, enter your Mailserver domain name, such as mail.domain.com.
+	In Addition, you must modify "--add-host mail.domain.com:xxx.xxx.xxx.xxx" under Extra Parameters, and replace mail.domain.com with what you entered for MAIL_HOST, and replace the xxx.xxx.xxx.xxx with that servers IP address.
+	Setting ENABLE_IMAPS to false will set Roundcube to use port 143 without SSL/TLS for IMAP connections. It is set to "true" by default, using port 993, and SSL/TLS.
+	Setting ENABLE_SMTPS to false will set Roundcube to use port 25 without STARTTLS for SMTP connections. It is set to "true" by default, using port 587 and STARTTLS.
+	By Default, DISABLE_INSTALLER is set to false. Once you successfully start the docker for the first time, You must open the Roundcube WebGUI at the port you set, pointing to /installer to complete the setup.
+	Once you have reached the end of the setup, you must shutdown the container, and switch DISABLE_INSTALLER to true, otherwise it will remain accessible to others.
+	Listening Port 8888 inside the container is for the Roundcube Webgui, and 8080 for the Postfixadmin Webgui. These can be customized under the Advance settings if desired.
+	Also under advanced settings, you can change the volume path where enigma stores its encryption keys. And lastly under advanced settings, you can specify the password encryption algorithm, only modify this if you know what you are doing.
   </Description>
   <Overview>
    Postfixadmin is an administrative interface for malfurious-mailserver.
    Roundcube is a fast and efficient Webmail client.
   </Overview>
   <Support></Support>
-  <Registry></Registry>
-  <GitHub></GitHub>
+  <Registry>https://registry.hub.docker.com/u/malfurious/roundcube-postfixadmin/</Registry>
+  <GitHub>https://github.com/Malfurious/roundcube-postfixadmin</GitHub>
+  <TemplateURL>https://raw.githubusercontent.com/Malfurious/docker-templates/master/Malfurious/malfurious-roundcube-postfixadmin.xml</TemplateURL>
   <Repository>malfurious/roundcube-postfixadmin</Repository>
   <Project></Project>
   <BindTime>true</BindTime>
   <Privileged>false</Privileged>
+    <Networking>
+    <Mode>bridge</Mode>
+  </Networking>
   <Config Name="Roundcube Port" Target="8888" Default="8888" Mode="tcp" Description="Roundcube Host Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Postfixadmin Port" Target="8080" Default="8080" Mode="tcp" Description="Postfixadmin Host Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
   <Config Name="MySQL Host" Target="MYSQL_HOST" Default="" Mode="" Description="Your MariaDB/MySQL Server IP Address/Hostname" Type="Variable" Display="always" Required="true" Mask="false"></Config>
@@ -40,5 +53,5 @@
   <DonateText></DonateText>
   <DonateLink></DonateLink>
   <DonateImg></DonateImg>
-  <ExtraParams></ExtraParams>
+  <ExtraParams>--add-host mail.domain.com:xxx.xxx.xxx.xxx</ExtraParams>
 </Containers>
