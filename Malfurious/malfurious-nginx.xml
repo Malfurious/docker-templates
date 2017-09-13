@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+<Beta>False</Beta>
+<Category>Network:Web</Category>
+  <Name>malfurious-nginx</Name>
+  <Description>
+	This docker is designed to be used with malfurious-mailserver, malfurious-postfixadmin, malfurious-roundcube, and malfurious-redis.
+	To setup Reverse Proxies. SSH into your server and run "docker exec -it malfurious-letsencrypt ngxproxy" and follow prompts.
+	Name: will be the name of the service you want to reverse proxy to.
+	Domain: will be the subdomain you want to forward to this service. Example: webmail.domain.td for webmail.
+	Webroot: Hit enter, leave as default.
+	Container: Enter either the services IP, or if the service is another docker on the same docker network, you can enter the dockers hostname.
+	Port: The service/dockers listening port.
+	HTTPS: Yes if you are providing an SSL cert, or No if not.
+		Certificate Path: Your fullchain SSL Cert path.
+		Certificate Key: Your privkey SSL cert path.
+		Secure Headers: Yes
+	Max Body size: null
+	Done! Repeat for each service.
+  </Description>
+  <Overview>
+   Malfurious-Nginx is a reverse Proxy server.
+  </Overview>
+  <Support></Support>
+  <Registry>https://registry.hub.docker.com/u/wonderfall/boring-nginx/</Registry>
+  <GitHub></GitHub>
+  <Repository>wonderfall/boring-nginx</Repository>
+  <Project>https://www.nginx.com/resources/wiki/</Project>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+      <Publish>
+	  <Port>
+        <HostPort>8000</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  <Port>
+        <HostPort>4430</HostPort>
+        <ContainerPort>443</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+	  </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/sites-enabled</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/conf.d</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/var/log/nginx</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+	<Volume>
+      <HostDir></HostDir>
+      <ContainerDir>/certs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <WebUI></WebUI>
+  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/NginxIcon.png</Icon>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <DonateImg></DonateImg>
+  <ExtraParams></ExtraParams>
+</Containers>
