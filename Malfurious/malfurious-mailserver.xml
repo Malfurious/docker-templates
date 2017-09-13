@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+<Beta>False</Beta>
+<Category>Network:Web</Category>
+  <Name>malfurious-mailserver</Name>
+  <Description>
+	This docker is designed to be used with malfurious-roundcube-postfixadmin.
+	This docker requires a mysql database to connect to, preferably MariaDB. Create a database named "postfix" with a user named "postfix". Set your own password for the user.
+	Enter your MariaDB/MySQL IP address or hostname for POST_USER. For POST_PASS fill in the password you used when you setup your mysql database for user postfix.
+	For MAIL_HOST, enter your desired FQDN(Fully Qualified Domain Name) for your mail server. Example: mail.domain.com.
+	To use SSL, such as with LetsEncrypt, modify the /etc/letsencrypt path variable under advanced settings to point to /etc/letsencrypt on this docker. Your certificates should use the following format from within that directory:
+		Inside /etc/letsencrypt: /live/mail.domain.td/fullchain.pem = certificate, /live/mail.domain.td/privkey.pem = certificate key. 
+	Port 11334 is for the RSPAMD webgui.
+	Under Advanced Settings, you can modify the Password Encryption method for Postfixadmin. It is set to "sha512-crypt" by default. You can also specify the Redis data path if desired.
+	Finally, a majority of the credit for this docker goes to Hardware, I merely integrated the Redis cache server, and formatted it for use in UnRaid as a template. Any other configuration settings you may be interested will be listed at: https://github.com/hardware/mailserver 
+  </Description>
+  <Overview>
+   Mailserver is an all-in-one SMTP/IMAP utility that also includes many features such as Anti-Spam/Virus filters.
+  </Overview>
+  <Support>https://forums.lime-technology.com/topic/60110-support-malfurious-mailserver/</Support>
+  <Registry>https://registry.hub.docker.com/u/malfurious/mailserver/</Registry>
+  <GitHub>https://github.com/malfurious/mailserver</GitHub>
+  <Repository>malfurious/mailserver</Repository>
+  <Project>https://github.com/Malfurious/mailserver</Project>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Networking>
+    <Mode>bridge</Mode>
+  </Networking>
+  <Config Name="SMTP Port" Target="25" Default="25" Mode="tcp" Description="SMTP Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="IMAP Port" Target="143" Default="143" Mode="tcp" Description="IMAP Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="SMTPS Port" Target="587" Default="587" Mode="tcp" Description="SMTPS Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="IMAPS Port" Target="993" Default="993" Mode="tcp" Description="IMAPS Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="ManageSieve Port" Target="4190" Default="4190" Mode="tcp" Description="ManageSieve Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="RSPAMD WebGUI Port" Target="11334" Default="11334" Mode="tcp" Description="RSPAMD WebGUI Port" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Mail Server Hostname" Target="MAIL_HOST" Default="" Mode="" Description="Mail Server Hostname" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="MySQL Postfix Username" Target="POST_USER" Default="postfix" Mode="" Description="MySQL Postfix Username" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="MySQL Postfix Password" Target="POST_PASS" Default="" Mode="" Description="MySQL Postfix Password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="MySQL Postfix Database Name" Target="POST_DB" Default="postfix" Mode="" Description="MySQL Postfix Database Name" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="MySQL Host" Target="MYSQL_HOST" Default="" Mode="" Description="Your MariaDB/MySQL Server IP Address/Hostname" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="RSPAMD Password" Target="RSPAMD_PASSWORD" Default="" Mode="" Description="RSPAMD Password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Encryption Method" Target="PASS_CRYPT" Default="" Mode="" Description="Postfixadmin Password Encryption Method" Type="Variable" Display="advanced-hide" Required="false" Mask="false"></Config>
+  <Config Name="Mail Data Path" Target="/var/mail" Default="" Mode="rw" Description="Container Path: /var/mail" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Redis Data Path" Target="/data" Default="/mnt/user/appdata/malfurious-mailserver/redis" Mode="rw" Description="Container Path: /data" Type="Path" Display="advanced-hide" Required="false" Mask="false"></Config>
+  <Config Name="LetsEncrypt Certificate Path" Target="/etc/letsencrypt" Default="" Mode="r" Description="Container Path: /etc/letsencrypt" Type="Path" Display="advanced-hide" Required="false" Mask="false"></Config>
+  <WebUI>http://[IP]:[PORT:11334]</WebUI>
+  <Icon>https://raw.githubusercontent.com/Malfurious/docker-templates/master/images/MailserverIcon.png</Icon>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <DonateImg></DonateImg>
+  <ExtraParams></ExtraParams>
+</Containers>
