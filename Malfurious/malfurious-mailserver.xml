@@ -17,7 +17,7 @@
   <Overview>
    Mailserver is an all-in-one SMTP/IMAP utility that also includes many features such as Anti-Spam/Virus filters.
   </Overview>
-  <Support></Support>
+  <Support>https://forums.lime-technology.com/topic/60110-support-malfurious-mailserver/</Support>
   <Registry>https://registry.hub.docker.com/u/malfurious/mailserver/</Registry>
   <GitHub>https://github.com/malfurious/mailserver</GitHub>
   <Repository>malfurious/mailserver</Repository>
