@@ -20,7 +20,7 @@
    Postfixadmin is an administrative interface for malfurious-mailserver.
    Roundcube is a fast and efficient Webmail client.
   </Overview>
-  <Support></Support>
+  <Support>https://forums.lime-technology.com/topic/60111-support-malfurious-roundcube-postfixadmin/</Support>
   <Registry>https://registry.hub.docker.com/u/malfurious/roundcube-postfixadmin/</Registry>
   <GitHub>https://github.com/Malfurious/roundcube-postfixadmin</GitHub>
   <TemplateURL>https://raw.githubusercontent.com/Malfurious/docker-templates/master/Malfurious/malfurious-roundcube-postfixadmin.xml</TemplateURL>
